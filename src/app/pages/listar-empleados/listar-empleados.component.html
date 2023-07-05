@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>Listado de Empleados</h2>
+
+    <p *ngIf="empleados.length <= 0" class="text-center">
+        No hay empleados registrados
+    </p>
+
+    <table *ngIf="empleados.length > 0" class="table table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th scope="col">ID Empleado</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">E-Mail</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empleado of empleados; let i = index">
+                <td> {{ empleado._id }} </td>
+                <td> {{ empleado.nombre }} </td>
+                <td> {{ empleado.departamento }} </td>
+                <td> {{ empleado.email }} </td>
+                <td> {{ empleado.telefono }} </td>
+                <td>
+                    <span [routerLink]="['/editar-empleado', empleado._id]">
+                        <button class="btn-warning btn btn-sm" type="button">Editar</button>
+                    </span>
+                </td>
+                <td>
+                    <span (click)="eliminarEmpleado(empleado, i)">
+                        <button class="btn-warning btn btn-sm" type="button">Eliminar</button>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
